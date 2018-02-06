@@ -19,8 +19,21 @@ public class PaekJoon_5000 {
 		return totalList.contains(current);
 	}
 	
-	public static void makeList(String[] current, int depth, int index) {
-		if (depth > 3) {
+	static int makeFactorial(int count) {
+		int result = count;
+		while (count == 1) {
+			count--;
+			result = result * count;
+		}
+		return count;
+	}
+	
+	public static void makeList(String[] current, int depth, int index, int count) {
+		if (depth > count) {
+			return;
+		}
+		if (totalList.size() == makeFactorial(count)) {
+			System.out.println("Size is full. so end!");
 			return;
 		}
 		
@@ -34,7 +47,7 @@ public class PaekJoon_5000 {
 		depth++;
 		
 		for (int i = 0; i < current.length - 2; i++) {
-			makeList(current, depth, i);
+			makeList(current, depth, i, count);
 		}
 		
 		String currentString = makeString(current);
@@ -59,7 +72,7 @@ public class PaekJoon_5000 {
 		int depth = 1;
 //		makeList(current, depth, 0);
 		for (int i = 0; i < current.length - 2; i++) {
-			makeList(current, depth, i);
+			makeList(current, depth, i, count);
 		}
 		
 		String result = "";
